@@ -9,27 +9,32 @@ class Display extends StatefulWidget {
 }
 
 class _DisplayState extends State<Display> {
+  Color myColor = Color(0xFF151414);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(25),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.black,
-          width: 2,
+      color: myColor, // Background color of the parent container
+      child: Container(
+        margin: EdgeInsets.all(25),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.white, // Border color of the child container
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(10),
         ),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Center(
-        child: Text(
-          "Test indtil videre",
-          style: TextStyle(
-            fontSize: 50,
-            fontWeight: FontWeight.bold,
+        child: Center(
+          child: Text(
+            "Test indtil videre",
+            style: TextStyle(
+              fontSize: 50,
+              fontWeight: FontWeight.bold,
+              color: Colors.white, // Text color of the child container
+            ),
           ),
         ),
       ),
     );
   }
 }
-

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gui_calculator/keypad.dart';
 import 'package:gui_calculator/display.dart';
 
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.black,
+  ));
   runApp(const MyApp());
 }
 
@@ -13,10 +17,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+      ),
         home: Scaffold(
-        appBar: AppBar(
-          title: Center(
+          appBar: AppBar(
+            backgroundColor: Colors.black,
+            title: Center(
             child: Text(
               'Calculator',
             ),
