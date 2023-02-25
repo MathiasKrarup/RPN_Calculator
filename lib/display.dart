@@ -9,12 +9,12 @@ class Display extends StatefulWidget {
 }
 
 class _DisplayState extends State<Display> {
-  Color myColor = Color(0xFF151414);
+  Color backgroundColor = Color(0xFF151414);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: myColor, // Background color of the parent container
+      color: backgroundColor, // Background color of the parent container
       child: Container(
         margin: EdgeInsets.all(25),
         decoration: BoxDecoration(
