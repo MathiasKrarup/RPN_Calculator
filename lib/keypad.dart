@@ -9,8 +9,8 @@ class Keypad extends StatefulWidget {
 class _KeypadState extends State<Keypad> {
 
   Color myColor = Color(0xFF151414);
-  double widthAndHeight = 1;
-  double containerMargin = 1;
+  double widthAndHeight = 65;
+  double containerMargin = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -199,19 +199,6 @@ class _KeypadState extends State<Keypad> {
                         onPressed: () {},
                         child: Text('7'),
                       ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.all(containerMargin),
-                  child: SizedBox(
-                    width: widthAndHeight,
-                    height: widthAndHeight,
-                    child: FloatingActionButton(
-                      onPressed: () {},
-                      child: Text('7'),
-                    ),
                   ),
                 ),
               ),
