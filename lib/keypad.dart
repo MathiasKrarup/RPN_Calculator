@@ -1,20 +1,37 @@
 import 'package:flutter/material.dart';
+import 'CommandPattern.dart';
 
-class Keypad extends StatefulWidget {
-  const Keypad({super.key});
+class RPNCalculator {
+  final List<num> stack = [];
 
-  @override
-  State<Keypad> createState() => _KeypadState();
+
+
 }
-class _KeypadState extends State<Keypad> {
+
+class CalculatorState{
+String enteredNumber;
+final List<double> stack;
+CalculatorState(this.enteredNumber, this.stack);
+}
+
+class Keypad extends StatelessWidget {
   Color containerColor = Color(0xFF151414);
   Color numberButtonColor = Color(0xFFD0CACA);
   Color operaterButtonColor = Color(0xFF00D3FF);
   double widthAndHeight = 65;
   double containerMargin = 20;
+  RPNCalculator RPNcalculator = RPNCalculator();
+
+  Keypad (this.calculatorState, this.updateUI);
+  CalculatorState calculatorState;
+  VoidCallback updateUI;
 
   @override
   Widget build(BuildContext context) {
+    EnterNumber(String value) {
+        calculatorState.enteredNumber = calculatorState.enteredNumber + value;
+        updateUI();
+    }
     return Container(
       color: containerColor,
       child: Column(
@@ -29,7 +46,9 @@ class _KeypadState extends State<Keypad> {
                   width: 50,
                   height: 60,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        EnterNumber("");
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.redAccent),
                       child: Text('Enter',
@@ -63,7 +82,7 @@ class _KeypadState extends State<Keypad> {
                     height: widthAndHeight,
                     child: FloatingActionButton(
                       onPressed: () {},
-                      child: Text('%',
+                      child: Text('+',
                         style: TextStyle(fontSize: 25.0,
                             color: Colors.black),
                       ),
@@ -100,7 +119,9 @@ class _KeypadState extends State<Keypad> {
                     width: widthAndHeight,
                     height: widthAndHeight,
                       child: FloatingActionButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          EnterNumber('7');
+                        },
                         child: Text('7',
                           style: TextStyle(fontSize: 25.0,
                               color: Colors.black),
@@ -117,7 +138,9 @@ class _KeypadState extends State<Keypad> {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        EnterNumber('8');
+                      },
                       child: Text('8',
                         style: TextStyle(fontSize: 25.0,
                             color: Colors.black),
@@ -134,7 +157,9 @@ class _KeypadState extends State<Keypad> {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        EnterNumber('9');
+                      },
                       child: Text('9',
                         style: TextStyle(fontSize: 25.0,
                             color: Colors.black),
@@ -172,7 +197,9 @@ class _KeypadState extends State<Keypad> {
                     width: widthAndHeight,
                     height: widthAndHeight,
                       child: FloatingActionButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          EnterNumber('4');
+                        },
                         child: Text('4',
                           style: TextStyle(fontSize: 25.0,
                               color: Colors.black),
@@ -189,7 +216,9 @@ class _KeypadState extends State<Keypad> {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        EnterNumber('5');
+                      },
                         child: Text('5',
                           style: TextStyle(fontSize: 25.0,
                               color: Colors.black),
@@ -206,7 +235,9 @@ class _KeypadState extends State<Keypad> {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        EnterNumber('6');
+                      },
                         child: Text('6',
                           style: TextStyle(fontSize: 25.0,
                               color: Colors.black),
@@ -244,7 +275,9 @@ class _KeypadState extends State<Keypad> {
                     width: widthAndHeight,
                     height: widthAndHeight,
                       child: FloatingActionButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          EnterNumber('1');
+                        },
                         child: Text('1',
                           style: TextStyle(fontSize: 25.0,
                               color: Colors.black),
@@ -261,7 +294,9 @@ class _KeypadState extends State<Keypad> {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        EnterNumber('2');
+                      },
                       child: Text('2',
                         style: TextStyle(fontSize: 25.0,
                             color: Colors.black),
@@ -278,7 +313,9 @@ class _KeypadState extends State<Keypad> {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        EnterNumber('3');
+                      },
                       child: Text('3',
                         style: TextStyle(fontSize: 25.0,
                             color: Colors.black),
@@ -295,12 +332,14 @@ class _KeypadState extends State<Keypad> {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
-                      onPressed: () {},
-                      child: Text('+',
+                      onPressed: () {
+                        EnterNumber('0');
+                      },
+                      child: Text('0',
                         style: TextStyle(fontSize: 25.0,
                             color: Colors.black),
                       ),
-                      backgroundColor: operaterButtonColor,
+                      backgroundColor: numberButtonColor,
                     ),
                   ),
                 ),
