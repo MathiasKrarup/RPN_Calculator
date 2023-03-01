@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gui_calculator/keypad.dart';
-import 'package:gui_calculator/display.dart';
+import 'package:gui_calculator/Frontend/keypad.dart';
+import 'package:gui_calculator/Frontend/display.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
