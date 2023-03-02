@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Backend/CommandPattern.dart';
+import '../Operations//CommandPattern.dart';
 
 class RPNCalculator {
   final List<num> stack = [];
@@ -10,8 +10,9 @@ class RPNCalculator {
 
 class CalculatorState{
 String enteredNumber;
+String operator;
 final List<double> stack;
-CalculatorState(this.enteredNumber, this.stack);
+CalculatorState(this.enteredNumber, this.operator, this.stack);
 }
 
 class Keypad extends StatelessWidget {
@@ -20,6 +21,7 @@ class Keypad extends StatelessWidget {
   Color operaterButtonColor = Color(0xFF00D3FF);
   double widthAndHeight = 65;
   double containerMargin = 20;
+  String mathOperator = '';
   RPNCalculator RPNcalculator = RPNCalculator();
 
   Keypad (this.calculatorState, this.updateUI);
@@ -28,13 +30,24 @@ class Keypad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     EnterNumber(String value) {
         calculatorState.enteredNumber = calculatorState.enteredNumber + value;
         updateUI();
     }
 
-    
+    AddToStack() {
+      final parsedString = double.tryParse(calculatorState.enteredNumber);
+      calculatorState.stack.add(parsedString!);
+      calculatorState.enteredNumber = '';
+      updateUI();
+    }
 
+      ClearAll() {
+      calculatorState.enteredNumber = '';
+      calculatorState.stack.clear();
+      updateUI();
+      }
 
     return Container(
       color: containerColor,
@@ -51,7 +64,9 @@ class Keypad extends StatelessWidget {
                   height: 60,
                     child: ElevatedButton(
                       onPressed: () {
-                        EnterNumber("");
+                        PushCommand(calculatorState.stack, double.tryParse(calculatorState.enteredNumber)!).execute();
+                        calculatorState.enteredNumber = '';
+                        updateUI();
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.redAccent),
@@ -69,7 +84,9 @@ class Keypad extends StatelessWidget {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        ClearAll();
+                      },
                       child: Text('AC',
                         style: TextStyle(fontSize: 25.0,
                             color: Colors.black),
@@ -85,7 +102,11 @@ class Keypad extends StatelessWidget {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+
+                      AdditionCommand(calculatorState.stack).execute();
+                      updateUI();
+                      },
                       child: Text('+',
                         style: TextStyle(fontSize: 25.0,
                             color: Colors.black),
@@ -102,7 +123,10 @@ class Keypad extends StatelessWidget {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        DivideCommand(calculatorState.stack).execute();
+                        updateUI();
+                      },
                       child: Text('/',
                         style: TextStyle(fontSize: 25.0,
                             color: Colors.black),
@@ -180,7 +204,10 @@ class Keypad extends StatelessWidget {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        MultiplyCommand(calculatorState.stack).execute();
+                        updateUI();
+                      },
                       child: Text('*',
                         style: TextStyle(fontSize: 25.0,
                             color: Colors.black),
@@ -258,7 +285,10 @@ class Keypad extends StatelessWidget {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        SubtractCommand(calculatorState.stack).execute();
+                        updateUI();
+                      },
                       child: Text('-',
                         style: TextStyle(fontSize: 25.0,
                             color: Colors.black),
@@ -349,6 +379,27 @@ class Keypad extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.all(containerMargin),
+                  child: SizedBox(
+                    width: widthAndHeight,
+                    height: widthAndHeight,
+                      child: FloatingActionButton(
+                        onPressed: () {},
+                          child: Text('Undo',
+                            style: TextStyle(fontSize: 25,
+                                color: Colors.black),
+                          ),
+                      ),
+                  ),
+                ),
+              )
+            ],
+
           )
         ],
       ),

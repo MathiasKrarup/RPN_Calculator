@@ -72,4 +72,14 @@ class DivideCommand implements Command {
   }
 }
 
+class PushCommand implements Command {
+  final List<double> stack;
+  final double value;
 
+  PushCommand(this.stack, this.value);
+
+  @override
+  void execute() {
+    stack.add(value);
+  }
+}

@@ -18,7 +18,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  CalculatorState calculatorState = CalculatorState('', []);
+  CalculatorState calculatorState = CalculatorState('', '', []);
 
   @override
   Widget build(BuildContext context) {

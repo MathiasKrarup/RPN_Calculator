@@ -28,9 +28,9 @@ class Display extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              'Stack',
+              calculatorState.stack.toString(),
               style: TextStyle(
-                fontSize: 50,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -38,7 +38,7 @@ class Display extends StatelessWidget {
             Text(
               calculatorState.enteredNumber,
               style: TextStyle(
-                fontSize: 50,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
