@@ -36,13 +36,6 @@ class Keypad extends StatelessWidget {
         updateUI();
     }
 
-    AddToStack() {
-      final parsedString = double.tryParse(calculatorState.enteredNumber);
-      calculatorState.stack.add(parsedString!);
-      calculatorState.enteredNumber = '';
-      updateUI();
-    }
-
       ClearAll() {
       calculatorState.enteredNumber = '';
       calculatorState.stack.clear();
@@ -60,20 +53,43 @@ class Keypad extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.only(left: 20),
                   child: SizedBox(
-                  width: 50,
-                  height: 60,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        PushCommand(calculatorState.stack, double.tryParse(calculatorState.enteredNumber)!).execute();
-                        calculatorState.enteredNumber = '';
-                        updateUI();
-                      },
-                      style: ElevatedButton.styleFrom(
+                    width: 50,
+                    height: 60,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          PushCommand(calculatorState.stack, double.tryParse
+                            (calculatorState.enteredNumber)!).execute();
+                            calculatorState.enteredNumber = '';
+                            updateUI();
+                        },
+                        style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.redAccent),
-                      child: Text('Enter',
+                        child: Text('Enter',
+                          style: TextStyle(fontSize: 18,
+                                color: Colors.black),
+                        ),
+                      ),
+                  ),
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  child: SizedBox(
+                  width: widthAndHeight,
+                  height: widthAndHeight,
+                    child: FloatingActionButton(
+                      onPressed: () {
+                        EnterNumber('.');
+                      },
+                      child: Text('.',
                         style: TextStyle(fontSize: 18.0,
                             color: Colors.black),
                       ),
+                      backgroundColor:  numberButtonColor,
                     ),
                   ),
                 ),
@@ -103,7 +119,6 @@ class Keypad extends StatelessWidget {
                     height: widthAndHeight,
                     child: FloatingActionButton(
                       onPressed: () {
-
                       AdditionCommand(calculatorState.stack).execute();
                       updateUI();
                       },
@@ -380,27 +395,6 @@ class Keypad extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.all(containerMargin),
-                  child: SizedBox(
-                    width: widthAndHeight,
-                    height: widthAndHeight,
-                      child: FloatingActionButton(
-                        onPressed: () {},
-                          child: Text('Undo',
-                            style: TextStyle(fontSize: 25,
-                                color: Colors.black),
-                          ),
-                      ),
-                  ),
-                ),
-              )
-            ],
-
-          )
         ],
       ),
     );

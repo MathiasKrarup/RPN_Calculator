@@ -41,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Container(
               width: double.infinity,
               child: Keypad(this.calculatorState, () => setState(() => {})),
