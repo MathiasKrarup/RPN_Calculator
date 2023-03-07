@@ -1,6 +1,6 @@
 # RPN Calculator
 
-![](/Assets/RPN_Calculator.png "The Calculator's UI, it was made on a Pixel 5 emulator (android)")
+![Alt Text](/Assets/RPN_Calculator.png "The Calculator's UI, it was made on a Pixel 5 emulator (android)")
 
 ## Description
 The calculator is based on Reverse Polish Notation (RPN).
