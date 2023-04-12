@@ -7,24 +7,105 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:gui_calculator/Frontend/keypad.dart';
 
 import 'package:gui_calculator/main.dart';
 
+import 'package:flutter_test/flutter_test.dart';
+
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Addition test', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Keypad(
+          CalculatorState('', '', []),
+              () {},
+        ),
+      ),
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    final keypad = tester.widget<Keypad>(find.byType(Keypad));
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    final state = keypad.calculatorState;
+    state.enteredNumber = '5';
+    state.stack.add(5.0);
+    state.enteredNumber = '7';
+    state.stack.add(7.0);
+
+    await tester.tap(find.byKey(Key('addition')));
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(state.stack, equals([12.0]));
   });
+  testWidgets('Substraction test', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Keypad(
+          CalculatorState('', '', []),
+              () {},
+        ),
+      ),
+    );
+
+    final keypad = tester.widget<Keypad>(find.byType(Keypad));
+
+    final state = keypad.calculatorState;
+    state.enteredNumber = '5';
+    state.stack.add(5.0);
+    state.enteredNumber = '7';
+    state.stack.add(7.0);
+
+    await tester.tap(find.byKey(Key('substraction')));
+    await tester.pump();
+
+    expect(state.stack, equals([-2.0]));
+  });
+  testWidgets('Substraction test', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Keypad(
+          CalculatorState('', '', []),
+              () {},
+        ),
+      ),
+    );
+
+    final keypad = tester.widget<Keypad>(find.byType(Keypad));
+
+    final state = keypad.calculatorState;
+    state.enteredNumber = '5';
+    state.stack.add(5.0);
+    state.enteredNumber = '7';
+    state.stack.add(7.0);
+
+    await tester.tap(find.byKey(Key('multiply')));
+    await tester.pump();
+
+    expect(state.stack, equals([35.0]));
+  });
+  testWidgets('Substraction test', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Keypad(
+          CalculatorState('', '', []),
+              () {},
+        ),
+      ),
+    );
+
+    final keypad = tester.widget<Keypad>(find.byType(Keypad));
+
+    final state = keypad.calculatorState;
+    state.enteredNumber = '20';
+    state.stack.add(20.0);
+    state.enteredNumber = '4';
+    state.stack.add(4.0);
+
+    await tester.tap(find.byKey(Key('division')));
+    await tester.pump();
+
+    expect(state.stack, equals([5.0]));
+  });
+
+
 }

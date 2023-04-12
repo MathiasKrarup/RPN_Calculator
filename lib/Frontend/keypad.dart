@@ -118,6 +118,7 @@ class Keypad extends StatelessWidget {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
+                      key: Key('addition'),
                       onPressed: () {
                       AdditionCommand(calculatorState.stack).execute();
                       updateUI();
@@ -138,6 +139,7 @@ class Keypad extends StatelessWidget {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
+                      key: Key('division'),
                       onPressed: () {
                         DivideCommand(calculatorState.stack).execute();
                         updateUI();
@@ -219,6 +221,7 @@ class Keypad extends StatelessWidget {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
+                      key: Key('multiply'),
                       onPressed: () {
                         MultiplyCommand(calculatorState.stack).execute();
                         updateUI();
@@ -300,6 +303,7 @@ class Keypad extends StatelessWidget {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
+                      key: Key('substraction'),
                       onPressed: () {
                         SubtractCommand(calculatorState.stack).execute();
                         updateUI();
