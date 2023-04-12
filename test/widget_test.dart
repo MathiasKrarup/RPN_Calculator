@@ -13,6 +13,10 @@ import 'package:gui_calculator/main.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 
+void mockEnterNumber(String value) {
+  // Do nothing
+}
+
 void main() {
   testWidgets('Addition test', (WidgetTester tester) async {
     await tester.pumpWidget(
@@ -60,7 +64,7 @@ void main() {
 
     expect(state.stack, equals([-2.0]));
   });
-  testWidgets('Substraction test', (WidgetTester tester) async {
+  testWidgets('multiply test', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Keypad(
@@ -83,7 +87,7 @@ void main() {
 
     expect(state.stack, equals([35.0]));
   });
-  testWidgets('Substraction test', (WidgetTester tester) async {
+  testWidgets('division test', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Keypad(
@@ -106,6 +110,20 @@ void main() {
 
     expect(state.stack, equals([5.0]));
   });
+  testWidgets('Button with number 8 should update entered number',
+          (WidgetTester tester) async {
+        // Build the widget tree
+        await tester.pumpWidget(MyApp());
 
+        // Tap the button with number 8
+        await tester.tap(find.byKey(Key('number8')));
+        await tester.tap(find.byKey(Key('number8')));
+        await tester.pump();
 
+        // Verify that the entered number has been updated to 8
+        expect(find.text('88'), findsOneWidget);
+      });
 }
+
+
+

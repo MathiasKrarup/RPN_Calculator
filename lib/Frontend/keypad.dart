@@ -19,8 +19,8 @@ class Keypad extends StatelessWidget {
   Color containerColor = Color(0xFF151414);
   Color numberButtonColor = Color(0xFFD0CACA);
   Color operaterButtonColor = Color(0xFF00D3FF);
-  double widthAndHeight = 65;
-  double containerMargin = 20;
+  double widthAndHeight = 10;
+  double containerMargin = 10;
   String mathOperator = '';
   RPNCalculator RPNcalculator = RPNCalculator();
 
@@ -183,6 +183,7 @@ class Keypad extends StatelessWidget {
                     width: widthAndHeight,
                     height: widthAndHeight,
                     child: FloatingActionButton(
+                      key: ValueKey('number8'),
                       onPressed: () {
                         EnterNumber('8');
                       },
